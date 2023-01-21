@@ -7,16 +7,25 @@ class ContactList extends React.Component {
   render() {
     const contacts = this.props.contacts;
 
-    const elements = contacts.map(({ id, name, number }) => (
-      <p key={id} className={css.text}>
-        {name} {number}
-      </p>
-    ));
-
     return (
       <>
         <h2 className={css.title}>Contacts</h2>
-        <div className={css.buttonWrapper}>{elements}</div>
+        <ul className={css.buttonWrapper}>
+          {contacts.map(({ id, name, number }) => (
+            <li key={id} className={css.contact}>
+              <p className={css.text}>
+                {name} {number}
+              </p>
+              <button
+                type="button"
+                className={css.btnDel}
+                onClick={() => this.props.onDeleteContact(id)}
+              >
+                Delete
+              </button>
+            </li>
+          ))}
+        </ul>
       </>
     );
   }

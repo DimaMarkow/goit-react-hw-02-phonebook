@@ -31,7 +31,21 @@ class Phonebook extends React.Component {
     this.setState({ filter: data.value });
   };
 
+  deleteContact = idForDelete => {
+    console.log(idForDelete);
+    this.setState(prevState => ({
+      contacts: prevState.contacts.filter(
+        contact => contact.id !== idForDelete
+      ),
+    }));
+  };
+
   render() {
+    const normalizedFilter = this.state.filter.toLowerCase();
+    const visibleContacts = this.state.contacts.filter(contact =>
+      contact.name.toLowerCase().includes(normalizedFilter)
+    );
+
     return (
       <div className={css.wrapper}>
         <ContactForm onSubmit={this.formSubmitHandler} />
@@ -39,7 +53,10 @@ class Phonebook extends React.Component {
           handleFilter={this.filterHandler}
           filterValue={this.state.filter}
         ></Filter>
-        <ContactList contacts={this.state.contacts}></ContactList>
+        <ContactList
+          contacts={visibleContacts}
+          onDeleteContact={this.deleteContact}
+        ></ContactList>
       </div>
     );
   }

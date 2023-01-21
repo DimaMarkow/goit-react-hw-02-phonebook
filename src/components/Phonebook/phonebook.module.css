@@ -1,6 +1,6 @@
 .wrapper {
   display: block;
-  width: 300px;
+  width: 400px;
   background-color: white;
   margin-top: 50px;
   padding: 30px 30px;
@@ -37,6 +37,21 @@
   width: 150px;
   cursor: pointer;
   margin: 5px 5px;
+}
+
+.btnDel {
+  display: inline-block;
+  border: none;
+  border-radius: 4px;
+  padding: 5px 10px;
+  width: 80px;
+  cursor: pointer;
+  margin: 5px 5px;
+}
+
+.contact {
+  display: flex;
+  justify-content: space-between;
 }
 
 .text {
