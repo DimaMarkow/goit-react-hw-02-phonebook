@@ -31,3 +31,7 @@ class Filter extends React.Component {
 }
 
 export default Filter;
+
+Filter.propTypes = {
+  filterValue: PropTypes.string.isRequired,
+};
