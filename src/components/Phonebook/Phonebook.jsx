@@ -21,9 +21,19 @@ class Phonebook extends React.Component {
 
   formSubmitHandler = data => {
     const contactID = nanoid();
-    const newContact = [{ ...data, id: contactID }];
+    const newContact = { ...data, id: contactID };
+
+    const repeatedContact = this.state.contacts.some(
+      contact => contact.name === newContact.name
+    );
+    const alertString = newContact.name + 'is already in contacts.';
+    if (repeatedContact) {
+      alert(alertString);
+      return;
+    }
+
     this.setState(prevState => ({
-      contacts: [...prevState.contacts, ...newContact],
+      contacts: [...prevState.contacts, newContact],
     }));
   };
 
@@ -32,7 +42,6 @@ class Phonebook extends React.Component {
   };
 
   deleteContact = idForDelete => {
-    console.log(idForDelete);
     this.setState(prevState => ({
       contacts: prevState.contacts.filter(
         contact => contact.id !== idForDelete
