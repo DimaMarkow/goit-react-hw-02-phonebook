@@ -34,4 +34,5 @@ export default Filter;
 
 Filter.propTypes = {
   filterValue: PropTypes.string.isRequired,
+  handleFilter: PropTypes.func.isRequired,
 };

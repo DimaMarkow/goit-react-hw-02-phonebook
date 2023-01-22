@@ -23,10 +23,12 @@ class Phonebook extends React.Component {
     const contactID = nanoid();
     const newContact = { ...data, id: contactID };
 
+    const normalizedName = newContact.name.toLowerCase();
+
     const repeatedContact = this.state.contacts.some(
-      contact => contact.name === newContact.name
+      contact => contact.name.toLowerCase() === normalizedName
     );
-    const alertString = newContact.name + 'is already in contacts.';
+    const alertString = newContact.name + ' is already in contacts.';
     if (repeatedContact) {
       alert(alertString);
       return;
